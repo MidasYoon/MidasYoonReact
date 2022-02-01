@@ -3,7 +3,7 @@ import Layout from '../../components/layout/layout.jsx';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import BoardNoticeList from './component/boardNoticeList.jsx';
-// import GalleyIndex from './component/galleryIndex.jsx';
+import GalleyIndex from './component/galleryIndex.jsx';
 import TrackIndex from './component/trackIndex.jsx';
 
 class IndexPage extends Component {
@@ -16,7 +16,7 @@ class IndexPage extends Component {
                             <BoardNoticeList/>
                         </Grid>
                         <Grid item xs={12} md={4} sm={6}>
-                            {/*<GalleyIndex/>*/}
+                            <GalleyIndex/>
                         </Grid>
                         <Grid item xs={12} md={4} sm={6}>
                             <TrackIndex/>

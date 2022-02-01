@@ -9,13 +9,14 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 
 import Paper from '@material-ui/core/Paper';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import GridList from '@material-ui/core/ImageList';
+import GridListTile from '@material-ui/core/ImageListItem';
+import GridListTileBar from '@material-ui/core/ImageListItemBar';
 
 import * as style from '../../../common/globalStyle.js';
 import * as util from '../../../common/util.js';
 import * as url from '../../../common/url.js';
+import Link from "@material-ui/core/Link";
 
 const useStyles = (theme) => ({
     appBar: {
@@ -56,7 +57,6 @@ class GalleryIndex extends Component {
 
         this.setLoading = this.setLoading.bind(this);
         this.getPhotoList = this.getPhotoList.bind(this);
-        this.galleryIndex = this.galleryIndex.bind(this);
         this.galleryDetail = this.galleryDetail.bind(this);
 
         this.state = {
@@ -83,25 +83,22 @@ class GalleryIndex extends Component {
     getPhotoList() {
         util.asyncRequest({
             setLoading: this.setLoading,
-            url : url.travelPath.ajax + 'get_gallery_list',
+            method: util.requestMethod.GET,
+            url : url.travelPath.ajax,
             data: {
                 title: "",
                 placeName: "",
                 address: "",
                 nickname: "",
                 page: 1,
-                max: 6,
+                size: 6,
             },
             success: (result) => {
                 this.setState({
-                    photoData: result.data.place_list.data,
+                    photoData: result.content,
                 })
             }
         });
-    }
-
-    galleryIndex() {
-        util.locationHref(url.travelPath.page + "gallery");
     }
 
     galleryDetail(id) {
@@ -110,7 +107,7 @@ class GalleryIndex extends Component {
 
     render () {
         const { classes } = this.props;
-        const { galleryIndex, galleryDetail } = this;
+        const { galleryDetail } = this;
 
         const { loading, photoData } = this.state;
 
@@ -120,19 +117,21 @@ class GalleryIndex extends Component {
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar variant="dense" className={classes.toolBar}>
                         <Typography className={classes.title}>최근 등록된 사진</Typography>
-                        <IconButton onClick={galleryIndex} className={classes.moreButton}>
-                            <AddIcon/>
-                        </IconButton>
+                        <Link href={url.travelPath.page}>
+                            <IconButton className={classes.moreButton}>
+                                <AddIcon/>
+                            </IconButton>
+                        </Link>
                     </Toolbar>
                 </AppBar>
                 <div className={classes.root} component={Paper}>
-                    <GridList cellHeight={109}>
+                    <GridList rowHeight={109}>
                         {photoData.map((tile) => (
                             <GridListTile key={tile.id}>
-                                <img src={tile.thumbnail} alt={tile.place_name} style={{objectFit: "cover"}} />
+                                <img src={tile.thumbnail} alt={tile.placeName} style={{objectFit: "cover"}} />
                                 <GridListTileBar
-                                    title={tile.place_name}
-                                    subtitle={<span>by {tile.user.nickname}</span>}
+                                    title={tile.placeName}
+                                    subtitle={<span>by {tile.nickname}</span>}
                                     style={{cursor: "pointer"}}
                                     onClick={() => galleryDetail(tile.id)}
                                 />
@@ -145,4 +144,4 @@ class GalleryIndex extends Component {
     }
 }
 
-module.exports = withStyles(useStyles)(GalleryIndex);
+export default withStyles(useStyles)(GalleryIndex);

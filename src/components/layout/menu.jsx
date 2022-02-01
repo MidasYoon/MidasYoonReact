@@ -237,7 +237,7 @@ class Menu extends Component {
                     </ListItem>
                     <Collapse in={openTrip} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <Link href={url.travelPath.page + "gallery"} color="inherit" style={{ textDecoration: 'none' }}>
+                            <Link href={url.travelPath.page} color="inherit" style={{ textDecoration: 'none' }}>
                                 <ListItem button className={classes.nested}>
                                     <ListItemText primary="여행 사진 갤러리" />
                                 </ListItem>

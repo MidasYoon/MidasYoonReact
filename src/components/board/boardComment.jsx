@@ -201,7 +201,7 @@ class BoardComments extends Component {
                                     <React.Fragment key={index}>
                                         <ListItem className={classes.comment} alignItems="flex-start">
                                             <ListItemAvatar>
-                                                <Avatar alt={item.user.nickname} src="#"/>
+                                                <Avatar alt={item.nickname} src="#"/>
                                             </ListItemAvatar>
                                             <TextField
                                                 size="small"
@@ -218,13 +218,13 @@ class BoardComments extends Component {
                                 return (
                                     <ListItem key={index} className={classes.comment} alignItems="flex-start">
                                         <ListItemAvatar>
-                                            <Avatar alt={item.user.nickname} src="#"/>
+                                            <Avatar alt={item.nickname} src="#"/>
                                         </ListItemAvatar>
                                         <ListItemText
                                             primary={
                                                 <React.Fragment>
                                                     <Typography component="span" className={classes.commentUser}>
-                                                        {item.user.nickname}
+                                                        {item.nickname}
                                                     </Typography>
                                                     <Typography component="span" variant="body2" className={classes.commentAt}>
                                                         &nbsp;{util.formatDate(item.createdAt, true)}

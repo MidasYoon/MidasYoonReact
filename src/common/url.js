@@ -7,6 +7,7 @@ export const memberPath = {
     inAjax: '/member_in/ajax/',
 }
 
+// 공지사항 게시판
 export const boardPath = {
     page:      '/board',
     inPage:    '/board_in',
@@ -14,6 +15,22 @@ export const boardPath = {
     ajax:      urlBase + '/api/board',
     inAjax:    urlBase + '/api/board_in',
     adminAjax: urlBase + '/api/board_ad',
+}
+
+// 여행 사진
+export const travelPath = {
+    page:      '/travel',
+    ajax:      urlBase + '/api/travel',
+}
+
+// 라이딩,트래킹 코스
+export const trackCoursePath = {
+    page:      '/travel',
+    inPage:    '/travel_in',
+    adminPage: '/travel_ad',
+    ajax:      urlBase + '/api/travel',
+    inAjax:    urlBase + '/api/travel_in',
+    adminAjax: urlBase + '/api/travel_ad',
 }
 
 export const progPath = {
@@ -38,15 +55,6 @@ export const transportPath = {
         adminPage: '/transport_ad/train/',
         adminAjax: '/transport_ad/train/ajax/',
     },
-}
-
-export const travelPath = {
-    page:      '/travel/',
-    ajax:      '/travel/ajax/',
-    inPage:    '/travel_in/',
-    inAjax:    '/travel_in/ajax/',
-    adminPage: '/travel_ad/',
-    adminAjax: '/travel_ad/ajax/',
 }
 
 export const gpxPath = {
